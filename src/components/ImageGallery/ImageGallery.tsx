@@ -1,8 +1,15 @@
 import { ImageCard } from "../ImageCard/ImageCard";
 import { nanoid } from "nanoid";
 import css from "./ImageGallery.module.css";
+import { Images } from "../../types/images";
+import React from "react";
 
-export const ImageGallery = ({ images, onClick }) => {
+type Props = {
+  images: Images[],
+  onClick: (image: Images) => void,
+}
+
+export const ImageGallery: React.FC<Props>  = ({ images, onClick }) => {
   return (
     <ul className={css.imageList}>
       {images.map((image) => {

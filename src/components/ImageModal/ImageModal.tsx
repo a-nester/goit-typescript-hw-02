@@ -1,9 +1,17 @@
-import "./ImageModal.css";
-import Modal from "react-modal";
-import { customStyles } from "../../helpers";
-Modal.setAppElement("#root");
+import './ImageModal.css';
+import Modal from 'react-modal';
+import { customStyles } from '../../helpers';
+import { Images, ImageUrls, IModal } from '../../types/images';
+import React from 'react';
+Modal.setAppElement('#root');
 
-export const ImageModal = ({ modalData, modalIsOpen, closeModal }) => {
+interface ImageModal {
+  modalData: IModal,
+  modalIsOpen: boolean,
+  closeModal: ()=> void,
+}
+
+export const ImageModal: React.FC<ImageModal> = ({ modalData, modalIsOpen, closeModal }) => {
   const { urls, description, likes, user } = modalData;
 
   return (

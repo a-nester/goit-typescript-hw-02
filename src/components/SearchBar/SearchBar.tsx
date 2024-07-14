@@ -1,23 +1,33 @@
 import css from "./SearchBar.module.css";
 import { FcSearch } from "react-icons/fc";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik,
+   Form,
+   Field,
+   ErrorMessage, } from "formik";
 import { validSchema } from "../../helpers";
 import toast, { Toaster } from "react-hot-toast";
 
-export const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (initialValues, actions) => {
-    actions.resetForm();
-    !initialValues.searchValue && toast("Need to add search word!");
-    onSearch(initialValues.searchValue);
-  };
+interface Props {
+  onSearch: (value: string) => void;
+}
 
-  const initialValues = { searchValue: "" };
+interface FormValues {
+  searchValue: string,
+}
+
+export const SearchBar: React.FC<Props> = ({ onSearch }) => {
+
+  const initialValues: FormValues = { searchValue: "" };
   return (
     <header>
       <Formik
         initialValues={initialValues}
         validationSchema={validSchema}
-        onSubmit={handleSubmit}
+        onSubmit={(initialValues, actions) => {
+    actions.resetForm();
+    !initialValues.searchValue && toast("Need to add search word!");
+    onSearch(initialValues.searchValue);
+  }}
       >
         <Form className={css.searchForm}>
           <Field
