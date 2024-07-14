@@ -38,7 +38,7 @@ function App() {
     topic && handleFetch();
   }, [topic, page]);
 
-  const handleSearch = (newTopic: string) => {
+  const handleSearch = (newTopic: string): void => {
     newTopic !== topic && setImages([]);
     setTopic(newTopic);
   };
@@ -47,9 +47,8 @@ function App() {
     setPage(page + 1);
   };
 
-  const openModal = (regular: IModal) => {
+  const openModal = (regular: IModal): void => {
     setIsOpen(true);
-    console.log(regular);
     setModalData(regular);
   };
 
